@@ -7,7 +7,7 @@ import { useAppStore } from "../context/AppStore";
 import { Badge, Card, EmptyState, ScreenHeader, StatTile } from "../components/ui";
 import { BottomTabBar, TAB_BAR_HEIGHT } from "../components/BottomTabBar";
 import { TopBar } from "../components/TopBar";
-import { colors, fontSize, spacing } from "../constants/theme";
+import { colors, fontSize, fonts, spacing } from "../constants/theme";
 
 export default function HistoryScreen() {
   const router = useRouter();
@@ -138,8 +138,9 @@ const styles = StyleSheet.create({
   eventTitle: {
     color: colors.text,
     fontSize: fontSize.subheading,
-    fontWeight: "900",
-    letterSpacing: -0.2,
+    fontFamily: fonts.display,
+    fontWeight: "700",
+    flexShrink: 1,
   },
   metaRow: {
     flexDirection: "row",

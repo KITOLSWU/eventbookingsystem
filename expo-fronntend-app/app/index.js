@@ -6,7 +6,7 @@ import { StatusBar } from "expo-status-bar";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { testBackend } from "../services/api";
-import { colors, fontSize, radius, spacing } from "../constants/theme";
+import { colors, fontSize, fonts, radius, spacing } from "../constants/theme";
 
 const slides = [
   {
@@ -145,10 +145,10 @@ const styles = StyleSheet.create({
   },
   title: {
     color: colors.white,
-    fontSize: 34,
-    lineHeight: 40,
-    fontWeight: "900",
-    letterSpacing: -0.8,
+    fontFamily: fonts.display,
+    fontSize: 32,
+    lineHeight: 38,
+    fontWeight: "700",
   },
   subtitle: {
     color: "rgba(255,255,255,0.82)",

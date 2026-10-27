@@ -7,7 +7,7 @@ import {
   View,
 } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { colors, fontSize, radius, shadow, spacing } from "../constants/theme";
+import { colors, fontSize, fonts, radius, shadow, spacing } from "../constants/theme";
 
 const BUTTON_VARIANTS = {
   primary: { background: colors.primary, foreground: colors.white, border: colors.primary },
@@ -359,7 +359,7 @@ const styles = StyleSheet.create({
   screenTitle: {
     color: colors.text,
     fontSize: fontSize.display,
-    fontWeight: "900",
-    letterSpacing: -0.5,
+    fontFamily: fonts.display,
+    fontWeight: "700",
   },
 });

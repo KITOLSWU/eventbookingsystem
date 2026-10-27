@@ -1,6 +1,4 @@
-import { useState } from "react";
 import {
-  Alert,
   ImageBackground,
   Linking,
   Pressable,
@@ -16,15 +14,13 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useAppStore } from "../context/AppStore";
 import { defaultEventImage } from "../data/events";
 import { AppButton, Badge, Card, EmptyState, IconButton } from "../components/ui";
-import { colors, fontSize, radius, spacing } from "../constants/theme";
+import { colors, fontSize, fonts, radius, spacing } from "../constants/theme";
 
 export default function EventDetailsScreen() {
   const router = useRouter();
   const insets = useSafeAreaInsets();
   const { id } = useLocalSearchParams();
-  const { bookEvent, currentUser, getEventById, getBookingsForCurrentUser } = useAppStore();
-
-  const [bookingLoading, setBookingLoading] = useState(false);
+  const { currentUser, getEventById, getBookingsForCurrentUser } = useAppStore();
 
   const event = getEventById(id);
 
@@ -85,21 +81,8 @@ export default function EventDetailsScreen() {
       return;
     }
 
-    if (isAdmin || soldOut || bookingLoading) return;
-
-    setBookingLoading(true);
-    try {
-      const created = await bookEvent(event.id);
-      if (created) {
-        router.push({ pathname: "/ticket", params: { id: event.id, bookingId: created.id } });
-      } else {
-        Alert.alert("Booking failed", "Could not reserve a seat. Please try again.");
-      }
-    } catch (error) {
-      Alert.alert("Booking failed", error.message || "Please try again.");
-    } finally {
-      setBookingLoading(false);
-    }
+    if (isAdmin || soldOut) return;
+    router.push({ pathname: "/payment", params: { id: event.id } });
   };
 
   return (
@@ -125,16 +108,18 @@ export default function EventDetailsScreen() {
           </View>
 
           <View style={styles.heroContent}>
-            <Text style={styles.heroTitle}>{event.title}</Text>
+            <Text style={styles.heroTitle} numberOfLines={2}>
+              {event.title}
+            </Text>
             <View style={styles.heroMeta}>
               <Ionicons name="calendar-outline" size={16} color="rgba(255,255,255,0.85)" />
-              <Text style={styles.heroMetaText}>
+              <Text style={styles.heroMetaText} numberOfLines={1}>
                 {event.date} · {event.time}
               </Text>
             </View>
             <View style={styles.heroMeta}>
               <Ionicons name="location-outline" size={16} color="rgba(255,255,255,0.85)" />
-              <Text style={styles.heroMetaText}>
+              <Text style={styles.heroMetaText} numberOfLines={1}>
                 {event.venue}, {event.city}
               </Text>
             </View>
@@ -196,7 +181,6 @@ export default function EventDetailsScreen() {
           icon={booking ? "qr-code-outline" : "ticket-outline"}
           onPress={handlePrimary}
           disabled={primaryDisabled}
-          loading={bookingLoading}
           style={styles.bookButton}
         />
       </View>
@@ -252,9 +236,11 @@ const styles = StyleSheet.create({
   },
   heroTitle: {
     color: colors.white,
-    fontSize: 30,
-    fontWeight: "900",
-    letterSpacing: -0.6,
+    fontFamily: fonts.display,
+    fontSize: 28,
+    lineHeight: 34,
+    fontWeight: "700",
+    flexShrink: 1,
   },
   heroMeta: {
     flexDirection: "row",
@@ -280,7 +266,8 @@ const styles = StyleSheet.create({
   sectionTitle: {
     color: colors.text,
     fontSize: fontSize.subheading,
-    fontWeight: "900",
+    fontFamily: fonts.display,
+    fontWeight: "700",
   },
   description: {
     color: colors.textSecondary,

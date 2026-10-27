@@ -19,7 +19,7 @@ import { defaultEventImage } from "../data/events";
 import { Badge, Card, EmptyState, IconButton, StatTile } from "../components/ui";
 import { BottomTabBar, TAB_BAR_HEIGHT } from "../components/BottomTabBar";
 import { TopBar } from "../components/TopBar";
-import { colors, fontSize, radius, shadow, spacing } from "../constants/theme";
+import { colors, fontSize, fonts, radius, shadow, spacing } from "../constants/theme";
 
 export default function HomeScreen() {
   const router = useRouter();
@@ -159,7 +159,7 @@ export default function HomeScreen() {
         </Pressable>
 
         <View style={styles.sectionHeader}>
-          <Text style={styles.sectionTitle}>Upcoming events</Text>
+          <Text style={styles.sectionTitle} numberOfLines={1}>Upcoming events</Text>
           <Badge label={`${filteredEvents.length} found`} tone="primary" />
         </View>
 
@@ -268,9 +268,10 @@ const styles = StyleSheet.create({
   },
   title: {
     color: colors.text,
-    fontSize: 32,
-    fontWeight: "900",
-    letterSpacing: -0.8,
+    fontFamily: fonts.display,
+    fontSize: 30,
+    lineHeight: 36,
+    fontWeight: "700",
   },
   subtitle: {
     color: colors.textSecondary,
@@ -334,9 +335,12 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   sectionTitle: {
+    flex: 1,
+    flexShrink: 1,
     color: colors.text,
     fontSize: fontSize.heading,
-    fontWeight: "900",
+    fontFamily: fonts.display,
+    fontWeight: "700",
   },
   list: {
     gap: spacing.lg,
@@ -373,9 +377,10 @@ const styles = StyleSheet.create({
   },
   eventTitle: {
     color: colors.white,
+    fontFamily: fonts.display,
     fontSize: 21,
-    fontWeight: "900",
-    letterSpacing: -0.3,
+    lineHeight: 26,
+    fontWeight: "700",
   },
   eventBody: {
     padding: spacing.lg,

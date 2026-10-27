@@ -15,7 +15,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useAppStore } from "../context/AppStore";
 import { AppButton, Field, IconButton } from "../components/ui";
-import { colors, fontSize, radius, spacing } from "../constants/theme";
+import { colors, fontSize, fonts, radius, spacing } from "../constants/theme";
 
 export default function LoginScreen() {
   const router = useRouter();
@@ -66,7 +66,7 @@ export default function LoginScreen() {
 
       <KeyboardAvoidingView
         style={styles.flex}
-        behavior={Platform.OS === "ios" ? "padding" : undefined}
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
       >
         <ScrollView
           style={styles.flex}
@@ -226,9 +226,10 @@ const styles = StyleSheet.create({
   },
   title: {
     color: colors.white,
-    fontSize: 34,
-    fontWeight: "900",
-    letterSpacing: -0.8,
+    fontFamily: fonts.display,
+    fontSize: 32,
+    lineHeight: 38,
+    fontWeight: "700",
     marginTop: spacing.sm,
   },
   subtitle: {

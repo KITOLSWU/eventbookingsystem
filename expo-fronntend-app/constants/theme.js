@@ -1,3 +1,5 @@
+import { Platform } from "react-native";
+
 /**
  * Shared design tokens.
  * Keeping colors, spacing, radii and shadows in one place keeps every
@@ -63,6 +65,12 @@ export const fontSize = {
   tiny: 11,
 };
 
+// A quiet editorial serif for display headings; body copy keeps each platform's
+// native sans-serif so forms and dense details remain familiar and readable.
+export const fonts = {
+  display: Platform.select({ ios: "Georgia", android: "serif", default: "Georgia" }),
+};
+
 export const shadow = {
   card: {
     shadowColor: "#0B1220",
@@ -79,3 +87,4 @@ export const shadow = {
     elevation: 6,
   },
 };
+

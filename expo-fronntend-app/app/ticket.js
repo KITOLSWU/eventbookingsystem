@@ -6,7 +6,7 @@ import QRCode from "react-native-qrcode-svg";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useAppStore } from "../context/AppStore";
 import { AppButton, Badge, EmptyState, IconButton } from "../components/ui";
-import { colors, fontSize, radius, spacing } from "../constants/theme";
+import { colors, fontSize, fonts, radius, spacing } from "../constants/theme";
 
 export default function TicketScreen() {
   const router = useRouter();
@@ -188,9 +188,10 @@ const styles = StyleSheet.create({
   },
   title: {
     color: colors.white,
-    fontSize: 30,
-    fontWeight: "900",
-    letterSpacing: -0.6,
+    fontFamily: fonts.display,
+    fontSize: 28,
+    lineHeight: 34,
+    fontWeight: "700",
   },
   subtitle: {
     color: "rgba(255,255,255,0.65)",
@@ -209,8 +210,8 @@ const styles = StyleSheet.create({
   eventTitle: {
     color: colors.text,
     fontSize: fontSize.title,
-    fontWeight: "900",
-    letterSpacing: -0.4,
+    fontFamily: fonts.display,
+    fontWeight: "700",
     marginBottom: spacing.xs,
   },
   metaRow: {
