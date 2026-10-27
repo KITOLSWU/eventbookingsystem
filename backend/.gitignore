@@ -1,0 +1,6 @@
+node_modules/
+.env
+.env.local
+.expo/
+npm-debug.log*
+.pnpm-debug.log*
